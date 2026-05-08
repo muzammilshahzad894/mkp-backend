@@ -1,0 +1,46 @@
+{{-- Mobile overlay --}}
+<div
+    x-cloak
+    x-show="sidebarOpen"
+    x-transition.opacity
+    class="fixed inset-0 z-40 bg-slate-950/60 backdrop-blur-sm lg:hidden"
+    style="display: none;"
+    @click="sidebarOpen = false"
+></div>
+
+<aside
+    class="fixed inset-y-0 left-0 z-50 flex w-64 flex-col border-r border-white/5 bg-gradient-to-b from-slate-900 via-slate-900 to-slate-950 shadow-2xl shadow-slate-950/50 transition-transform duration-200 ease-out"
+    x-bind:class="{
+        'translate-x-0': sidebarOpen,
+        '-translate-x-full': !sidebarOpen,
+        'lg:translate-x-0': !sidebarCollapsed,
+        'lg:-translate-x-full': sidebarCollapsed,
+    }"
+>
+    <div class="flex h-16 shrink-0 items-center gap-3 border-b border-white/5 px-5">
+        <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-violet-500 to-cyan-400 text-lg font-bold text-white shadow-lg shadow-violet-500/30">
+            {{ \Illuminate\Support\Str::upper(\Illuminate\Support\Str::substr(config('app.name', 'M'), 0, 1)) }}
+        </div>
+        <div class="min-w-0 flex-1">
+            <p class="truncate text-sm font-semibold text-white">{{ config('app.name', 'MKPDesign') }}</p>
+            <p class="truncate text-xs text-slate-500">Menu</p>
+        </div>
+        <button
+            type="button"
+            class="rounded-lg p-2 text-slate-400 hover:bg-white/5 hover:text-white lg:hidden"
+            @click="sidebarOpen = false"
+        >
+            <span class="sr-only">Close menu</span>
+            <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+    </div>
+
+    <nav class="flex-1 space-y-1 overflow-y-auto p-4">
+        <x-sidebar-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" @click="sidebarOpen = false">
+            <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-white/5 text-cyan-300 ring-1 ring-white/10">
+                <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"/></svg>
+            </span>
+            Dashboard
+        </x-sidebar-link>
+    </nav>
+</aside>
