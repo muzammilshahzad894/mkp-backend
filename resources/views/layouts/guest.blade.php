@@ -8,15 +8,11 @@
         <title>{{ config('app.name', 'MKPDesign') }}</title>
 
         <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=plus-jakarta-sans:400,500,600,700&display=swap" rel="stylesheet" />
+        <link href="https://fonts.bunny.net/css?family=inter:400,500,600,700|plus-jakarta-sans:400,500,600,700|syne:600,700,800&display=swap" rel="stylesheet" />
 
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body class="min-h-full bg-slate-100 font-sans antialiased text-slate-900">
-        <div class="flex min-h-full flex-col items-center justify-center px-4 py-10">
-            <div class="w-full max-w-md">
-                {{ $slot }}
-            </div>
-        </div>
+    <body class="min-h-full bg-slate-950 font-sans antialiased">
+        {{ $slot }}
     </body>
 </html>

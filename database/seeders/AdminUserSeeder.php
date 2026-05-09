@@ -4,12 +4,14 @@ namespace Database\Seeders;
 
 use App\Models\User;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\Hash;
 
 class AdminUserSeeder extends Seeder
 {
     /**
-     * Default admin for MKPDesign staff login (change password in production).
+     * Default MKPDesign admin (rotate password in production).
+     *
+     * Email: admin@mkpdesign.com
+     * Password: MKPDesign@2026
      */
     public function run(): void
     {
@@ -17,7 +19,7 @@ class AdminUserSeeder extends Seeder
             ['email' => 'admin@mkpdesign.com'],
             [
                 'name' => 'MKPDesign Admin',
-                'password' => Hash::make('MKPDesign@2026'),
+                'password' => 'MKPDesign@2026',
                 'email_verified_at' => now(),
             ]
         );

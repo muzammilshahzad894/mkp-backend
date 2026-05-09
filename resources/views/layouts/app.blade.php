@@ -8,7 +8,7 @@
         <title>{{ isset($title) ? $title.' — ' : '' }}{{ config('app.name', 'MKPDesign') }}</title>
 
         <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=plus-jakarta-sans:400,500,600,700&display=swap" rel="stylesheet" />
+        <link href="https://fonts.bunny.net/css?family=plus-jakarta-sans:400,500,600,700|syne:600,700,800&display=swap" rel="stylesheet" />
 
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
@@ -20,7 +20,7 @@
                 class="transition-[padding] duration-200 ease-out"
                 :class="sidebarCollapsed ? 'lg:pl-0' : 'lg:pl-64'"
             >
-                <header class="sticky top-0 z-30 flex h-16 shrink-0 items-center justify-between gap-3 border-b border-slate-200/80 bg-white/95 px-4 backdrop-blur-md">
+                <header class="sticky top-0 z-30 flex h-16 shrink-0 items-center justify-between gap-3 border-b border-slate-200/70 bg-white/80 px-4 shadow-sm shadow-slate-200/30 backdrop-blur-xl supports-[backdrop-filter]:bg-white/70">
                     <div class="flex min-w-0 flex-1 items-center gap-2 sm:gap-3">
                         <button
                             type="button"

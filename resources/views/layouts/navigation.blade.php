@@ -9,7 +9,7 @@
 ></div>
 
 <aside
-    class="fixed inset-y-0 left-0 z-50 flex w-64 flex-col border-r border-white/5 bg-gradient-to-b from-slate-900 via-slate-900 to-slate-950 shadow-2xl shadow-slate-950/50 transition-transform duration-200 ease-out"
+    class="fixed inset-y-0 left-0 z-50 flex w-64 flex-col border-r border-white/[0.06] bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 shadow-2xl shadow-slate-950/55 ring-1 ring-white/[0.04] transition-transform duration-200 ease-out"
     x-bind:class="{
         'translate-x-0': sidebarOpen,
         '-translate-x-full': !sidebarOpen,
@@ -23,7 +23,7 @@
         </div>
         <div class="min-w-0 flex-1">
             <p class="truncate text-sm font-semibold text-white">{{ config('app.name', 'MKPDesign') }}</p>
-            <p class="truncate text-xs text-slate-500">Menu</p>
+            <p class="truncate text-xs font-medium text-slate-500">{{ __('Navigation') }}</p>
         </div>
         <button
             type="button"
