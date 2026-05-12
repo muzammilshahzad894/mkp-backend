@@ -1,4 +1,6 @@
-<x-guest-layout>
+@extends('layouts.guest')
+
+@section('content')
     <div
         class="login-screen font-login relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-5 py-14 text-white"
         style="background-color: #4a69bd;"
@@ -161,4 +163,4 @@
             </div>
         </div>
     </div>
-</x-guest-layout>
+@endsection

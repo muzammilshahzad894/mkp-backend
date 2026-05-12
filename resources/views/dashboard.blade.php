@@ -1,5 +1,6 @@
-<x-app-layout>
-    <x-slot name="header">
+@extends('layouts.app')
+
+@section('header')
         <div class="flex min-w-0 flex-col gap-0.5">
             <h1 class="truncate text-lg font-semibold tracking-tight text-slate-900">
                 {{ __('Dashboard') }}
@@ -8,9 +9,9 @@
                 {{ now()->translatedFormat('l, j F Y') }}
             </p>
         </div>
-    </x-slot>
+@endsection
 
-    <div class="mx-auto max-w-6xl px-4 py-8 sm:px-6 lg:px-8 lg:py-10">
+@section('content')
         {{-- Hero welcome --}}
         <div class="relative overflow-hidden rounded-3xl border border-slate-200/80 bg-white shadow-xl shadow-slate-200/40 ring-1 ring-slate-900/[0.03]">
             <div class="pointer-events-none absolute inset-0 bg-gradient-to-br from-violet-600/[0.07] via-transparent to-cyan-500/[0.08]"></div>
@@ -99,4 +100,4 @@
             </div>
         </div>
     </div>
-</x-app-layout>
+@endsection

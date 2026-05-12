@@ -13,6 +13,6 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body class="min-h-full bg-slate-950 font-sans antialiased">
-        {{ $slot }}
+        @yield('content')
     </body>
 </html>
