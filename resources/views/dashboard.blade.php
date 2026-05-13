@@ -23,8 +23,8 @@
                 : __('Great work today. Time to wrap things up.'));
     @endphp
 
-    <div class="py-10">
-        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-5">
+    <div class="py-12">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
 
             {{-- ── Hero Welcome Card ── --}}
             <div
@@ -85,69 +85,6 @@
                         </p>
                     </div>
 
-                </div>
-            </div>
-
-            {{-- ── Info Cards ── --}}
-
-            {{-- Row 1: Profile + Status side by side on lg+ --}}
-            <div class="grid grid-cols-1 gap-5 lg:grid-cols-2">
-
-                {{-- Profile Card --}}
-                <div class="flex items-center gap-4 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-                    <div
-                        class="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl"
-                        style="background: linear-gradient(135deg, #8b5cf6, #4f46e5); box-shadow: 0 6px 18px rgba(139,92,246,0.28);"
-                    >
-                        <svg class="h-7 w-7 text-white" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
-                            <path fill-rule="evenodd" d="M7.5 6a4.5 4.5 0 1 1 9 0 4.5 4.5 0 0 1-9 0ZM3.751 20.105a8.25 8.25 0 0 1 16.498 0 .75.75 0 0 1-.437.695A18.683 18.683 0 0 1 12 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 0 1-.437-.695Z" clip-rule="evenodd"/>
-                        </svg>
-                    </div>
-                    <div class="min-w-0">
-                        <p class="text-xs font-semibold uppercase tracking-widest text-slate-400">
-                            {{ __('Logged in as') }}
-                        </p>
-                        <h2 class="mt-1 truncate text-lg font-bold text-slate-900">
-                            {{ Auth::user()->name }}
-                        </h2>
-                    </div>
-                </div>
-
-                {{-- Account Status Card --}}
-                <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-                    <p class="text-xs font-semibold uppercase tracking-widest text-slate-400">
-                        {{ __('Account Status') }}
-                    </p>
-                    <div class="mt-3 flex items-center gap-2.5">
-                        <span class="relative flex h-2.5 w-2.5 shrink-0">
-                            <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-60"></span>
-                            <span class="relative inline-flex h-2.5 w-2.5 rounded-full bg-emerald-500"></span>
-                        </span>
-                        <span class="text-sm font-bold text-emerald-700">{{ __('Active & Secure') }}</span>
-                    </div>
-                    <p class="mt-2 text-xs text-slate-400">
-                        {{ __('Your session is protected and verified.') }}
-                    </p>
-                </div>
-
-            </div>
-
-            {{-- Row 2: Email full width --}}
-            <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-                <div class="flex items-center justify-between gap-4">
-                    <div class="min-w-0">
-                        <p class="text-xs font-semibold uppercase tracking-widest text-slate-400">
-                            {{ __('Email Address') }}
-                        </p>
-                        <p class="mt-1.5 truncate text-sm font-medium text-slate-800">
-                            {{ Auth::user()->email }}
-                        </p>
-                    </div>
-                    <div class="shrink-0 rounded-xl bg-slate-100 p-3">
-                        <svg class="h-5 w-5 text-slate-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
-                        </svg>
-                    </div>
                 </div>
             </div>
 
