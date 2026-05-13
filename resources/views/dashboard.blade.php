@@ -1,103 +1,156 @@
 @extends('layouts.app')
 
 @section('header')
-        <div class="flex min-w-0 flex-col gap-0.5">
-            <h1 class="truncate text-lg font-semibold tracking-tight text-slate-900">
-                {{ __('Dashboard') }}
-            </h1>
-            <p class="hidden text-xs font-medium text-slate-500 sm:block">
-                {{ now()->translatedFormat('l, j F Y') }}
-            </p>
-        </div>
+    <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+        {{ __('Dashboard') }}
+    </h2>
 @endsection
 
 @section('content')
-        {{-- Hero welcome --}}
-        <div class="relative overflow-hidden rounded-3xl border border-slate-200/80 bg-white shadow-xl shadow-slate-200/40 ring-1 ring-slate-900/[0.03]">
-            <div class="pointer-events-none absolute inset-0 bg-gradient-to-br from-violet-600/[0.07] via-transparent to-cyan-500/[0.08]"></div>
-            <div class="pointer-events-none absolute -right-24 top-0 h-72 w-72 rounded-full bg-gradient-to-br from-violet-400/25 to-cyan-400/10 blur-3xl"></div>
-            <div class="pointer-events-none absolute -bottom-20 left-10 h-56 w-56 rounded-full bg-gradient-to-tr from-cyan-400/15 to-transparent blur-2xl"></div>
+    @php
+        $hour = now()->hour;
 
-            <div class="relative grid gap-10 p-8 sm:p-10 lg:grid-cols-[1fr_auto] lg:items-center lg:gap-12 lg:p-12">
-                <div class="min-w-0">
-                    <div class="inline-flex items-center gap-2 rounded-full bg-slate-900/[0.04] px-3 py-1 text-xs font-semibold uppercase tracking-wider text-violet-700 ring-1 ring-slate-900/[0.06]">
-                        <span class="relative flex h-2 w-2">
-                            <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-60"></span>
-                            <span class="relative inline-flex h-2 w-2 rounded-full bg-emerald-500"></span>
+        $greeting = $hour < 12
+            ? __('Good Morning')
+            : ($hour < 17
+                ? __('Good Afternoon')
+                : __('Good Evening'));
+
+        $message = $hour < 12
+            ? __('Start your day with clarity and focus.')
+            : ($hour < 17
+                ? __('Hope your work is going smoothly.')
+                : __('Great work today. Time to wrap things up.'));
+    @endphp
+
+    <div class="py-10">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-5">
+
+            {{-- ── Hero Welcome Card ── --}}
+            <div
+                class="relative overflow-hidden rounded-2xl"
+                style="background: linear-gradient(135deg, #0f172a 0%, #1e293b 55%, #0f172a 100%); padding: 48px 52px;"
+            >
+                {{-- Dot-grid overlay --}}
+                <div class="pointer-events-none absolute inset-0"
+                     style="background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.045) 1px, transparent 0); background-size: 28px 28px;"></div>
+
+                {{-- Violet glow top-right --}}
+                <div class="pointer-events-none absolute rounded-full"
+                     style="top:-90px; right:-90px; width:300px; height:300px;
+                            background: radial-gradient(circle, rgba(139,92,246,0.30) 0%, transparent 68%);"></div>
+
+                {{-- Indigo glow bottom-left --}}
+                <div class="pointer-events-none absolute rounded-full"
+                     style="bottom:-70px; left:-70px; width:240px; height:240px;
+                            background: radial-gradient(circle, rgba(99,102,241,0.20) 0%, transparent 68%);"></div>
+
+                {{-- Content row --}}
+                <div class="relative z-10 flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
+
+                    {{-- Left: greeting --}}
+                    <div>
+                        <span
+                            class="inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-widest"
+                            style="border: 1px solid rgba(255,255,255,0.12); background: rgba(255,255,255,0.06); color: #94a3b8; letter-spacing: 0.1em;"
+                        >
+                            ✦ {{ __('Welcome Back') }}
                         </span>
-                        {{ __('Live workspace') }}
+
+                        <h1 class="mt-5 text-4xl font-bold tracking-tight" style="color:#ffffff; line-height:1.15;">
+                            {{ $greeting }},
+                        </h1>
+                        <p class="text-4xl font-bold tracking-tight mt-1" style="color:#c4b5fd; line-height:1.15;">
+                            {{ Auth::user()->name }}
+                        </p>
+
+                        <p class="mt-5 text-sm leading-relaxed" style="color:#94a3b8; max-width:340px;">
+                            {{ $message }}
+                        </p>
                     </div>
 
-                    <h2 class="font-display mt-5 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl lg:text-[2.35rem] lg:leading-tight">
-                        {{ __('Hello, :name', ['name' => Auth::user()->name]) }}
-                    </h2>
-                    <p class="mt-4 max-w-xl text-base leading-relaxed text-slate-600 sm:text-lg">
-                        {{ __('You are signed in. This is your home base—use the sidebar when you add more sections. For now, relax and enjoy the view.') }}
+                    {{-- Right: date badge --}}
+                    <div
+                        class="shrink-0 rounded-xl text-right"
+                        style="border: 1px solid rgba(255,255,255,0.10); background: rgba(255,255,255,0.06); padding: 18px 26px; backdrop-filter: blur(8px);"
+                    >
+                        <p class="text-xs uppercase tracking-widest mb-1" style="color:#64748b; letter-spacing:0.12em;">
+                            {{ __('Today') }}
+                        </p>
+                        <p class="text-sm font-bold" style="color:#ffffff;">
+                            {{ now()->translatedFormat('l') }}
+                        </p>
+                        <p class="text-xs mt-1" style="color:#94a3b8;">
+                            {{ now()->translatedFormat('j F Y') }}
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+
+            {{-- ── Info Cards ── --}}
+
+            {{-- Row 1: Profile + Status side by side on lg+ --}}
+            <div class="grid grid-cols-1 gap-5 lg:grid-cols-2">
+
+                {{-- Profile Card --}}
+                <div class="flex items-center gap-4 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+                    <div
+                        class="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl"
+                        style="background: linear-gradient(135deg, #8b5cf6, #4f46e5); box-shadow: 0 6px 18px rgba(139,92,246,0.28);"
+                    >
+                        <svg class="h-7 w-7 text-white" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                            <path fill-rule="evenodd" d="M7.5 6a4.5 4.5 0 1 1 9 0 4.5 4.5 0 0 1-9 0ZM3.751 20.105a8.25 8.25 0 0 1 16.498 0 .75.75 0 0 1-.437.695A18.683 18.683 0 0 1 12 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 0 1-.437-.695Z" clip-rule="evenodd"/>
+                        </svg>
+                    </div>
+                    <div class="min-w-0">
+                        <p class="text-xs font-semibold uppercase tracking-widest text-slate-400">
+                            {{ __('Logged in as') }}
+                        </p>
+                        <h2 class="mt-1 truncate text-lg font-bold text-slate-900">
+                            {{ Auth::user()->name }}
+                        </h2>
+                    </div>
+                </div>
+
+                {{-- Account Status Card --}}
+                <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+                    <p class="text-xs font-semibold uppercase tracking-widest text-slate-400">
+                        {{ __('Account Status') }}
                     </p>
-
-                    <div class="mt-8 flex flex-wrap gap-3">
-                        <span class="inline-flex items-center gap-2 rounded-2xl bg-white px-4 py-2.5 text-sm font-semibold text-slate-800 shadow-sm ring-1 ring-slate-200/80">
-                            <svg class="h-5 w-5 text-violet-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
-                            </svg>
-                            {{ __('Authenticated') }}
+                    <div class="mt-3 flex items-center gap-2.5">
+                        <span class="relative flex h-2.5 w-2.5 shrink-0">
+                            <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-60"></span>
+                            <span class="relative inline-flex h-2.5 w-2.5 rounded-full bg-emerald-500"></span>
                         </span>
-                        <span class="inline-flex items-center rounded-2xl bg-gradient-to-r from-violet-600/10 to-cyan-500/10 px-4 py-2.5 text-sm font-semibold text-violet-900 ring-1 ring-violet-500/15">
-                            {{ __('Dashboard v1') }}
-                        </span>
+                        <span class="text-sm font-bold text-emerald-700">{{ __('Active & Secure') }}</span>
                     </div>
+                    <p class="mt-2 text-xs text-slate-400">
+                        {{ __('Your session is protected and verified.') }}
+                    </p>
                 </div>
 
-                {{-- Decorative panel --}}
-                <div class="relative hidden w-full max-w-[17rem] shrink-0 lg:block">
-                    <div class="animate-float relative rounded-3xl border border-white/60 bg-gradient-to-br from-slate-900 via-slate-900 to-violet-950 p-6 text-white shadow-2xl shadow-violet-900/30 ring-1 ring-white/10">
-                        <div class="pointer-events-none absolute inset-0 rounded-3xl bg-[radial-gradient(circle_at_30%_20%,rgba(167,139,250,0.35),transparent_55%)]"></div>
-                        <p class="relative text-xs font-semibold uppercase tracking-widest text-violet-200/90">
-                            {{ __('Snapshot') }}
+            </div>
+
+            {{-- Row 2: Email full width --}}
+            <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+                <div class="flex items-center justify-between gap-4">
+                    <div class="min-w-0">
+                        <p class="text-xs font-semibold uppercase tracking-widest text-slate-400">
+                            {{ __('Email Address') }}
                         </p>
-                        <p class="relative mt-6 font-display text-4xl font-bold tabular-nums tracking-tight">
-                            100<span class="text-lg font-semibold text-violet-200/80">%</span>
+                        <p class="mt-1.5 truncate text-sm font-medium text-slate-800">
+                            {{ Auth::user()->email }}
                         </p>
-                        <p class="relative mt-1 text-sm text-slate-400">
-                            {{ __('Ready for your next pages') }}
-                        </p>
-                        <div class="relative mt-8 space-y-3">
-                            <div class="h-2 overflow-hidden rounded-full bg-white/10">
-                                <div class="h-full w-full rounded-full bg-gradient-to-r from-violet-400 to-cyan-400"></div>
-                            </div>
-                            <div class="flex justify-between text-xs font-medium text-slate-500">
-                                <span>{{ __('Layout') }}</span>
-                                <span class="text-emerald-300">{{ __('Online') }}</span>
-                            </div>
-                        </div>
+                    </div>
+                    <div class="shrink-0 rounded-xl bg-slate-100 p-3">
+                        <svg class="h-5 w-5 text-slate-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
+                        </svg>
                     </div>
                 </div>
             </div>
-        </div>
 
-        {{-- Placeholder row -- subtle, not fake navigation --}}
-        <div class="mt-8 grid gap-4 sm:grid-cols-3">
-            <div class="rounded-2xl border border-dashed border-slate-200/90 bg-white/60 p-6 ring-1 ring-slate-900/[0.02] backdrop-blur-sm">
-                <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-slate-100 text-slate-500">
-                    <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/></svg>
-                </div>
-                <p class="mt-4 text-sm font-semibold text-slate-800">{{ __('More modules') }}</p>
-                <p class="mt-1 text-xs leading-relaxed text-slate-500">{{ __('Wire new screens here when you are ready.') }}</p>
-            </div>
-            <div class="rounded-2xl border border-dashed border-slate-200/90 bg-white/60 p-6 ring-1 ring-slate-900/[0.02] backdrop-blur-sm">
-                <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-slate-100 text-slate-500">
-                    <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"/></svg>
-                </div>
-                <p class="mt-4 text-sm font-semibold text-slate-800">{{ __('Layouts') }}</p>
-                <p class="mt-1 text-xs leading-relaxed text-slate-500">{{ __('Keep sections consistent as the app grows.') }}</p>
-            </div>
-            <div class="rounded-2xl border border-dashed border-slate-200/90 bg-white/60 p-6 ring-1 ring-slate-900/[0.02] backdrop-blur-sm">
-                <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-slate-100 text-slate-500">
-                    <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
-                </div>
-                <p class="mt-4 text-sm font-semibold text-slate-800">{{ __('Performance') }}</p>
-                <p class="mt-1 text-xs leading-relaxed text-slate-500">{{ __('Fast Blade views and lean assets by default.') }}</p>
-            </div>
         </div>
     </div>
 @endsection
