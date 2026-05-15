@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Facades\Storage;
 
 class Blog extends Model
@@ -13,7 +12,6 @@ class Blog extends Model
      * @var list<string>
      */
     protected $fillable = [
-        'user_id',
         'title',
         'category',
         'slug',
@@ -36,11 +34,6 @@ class Blog extends Model
             'is_published' => 'boolean',
             'published_date' => 'date',
         ];
-    }
-
-    public function user(): BelongsTo
-    {
-        return $this->belongsTo(User::class);
     }
 
     /**

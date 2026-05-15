@@ -15,11 +15,11 @@
                     <p class="mt-1 text-sm text-gray-600">{{ __('Add a title, content, and optional excerpt and slug.') }}</p>
                 </header>
 
-                <x-blog-form
-                    :action="route('blogs.store')"
-                    method="POST"
-                    :submit-label="__('Create post')"
-                />
+                @include('blog.partials.blog-form', [
+                    'action' => route('blogs.store'),
+                    'method' => 'POST',
+                    'submitLabel' => __('Create post'),
+                ])
             </div>
         </div>
     </div>

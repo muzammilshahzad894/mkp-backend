@@ -15,12 +15,12 @@
                     <p class="mt-1 text-sm text-gray-600">{{ __('Update the fields below and save your changes.') }}</p>
                 </header>
 
-                <x-blog-form
-                    :action="route('blogs.update', $blog)"
-                    method="PUT"
-                    :submit-label="__('Save changes')"
-                    :blog="$blog"
-                />
+                @include('blog.partials.blog-form', [
+                    'action' => route('blogs.update', $blog),
+                    'method' => 'PUT',
+                    'submitLabel' => __('Save changes'),
+                    'blog' => $blog,
+                ])
             </div>
         </div>
     </div>
