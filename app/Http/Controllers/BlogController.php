@@ -14,11 +14,22 @@ class BlogController extends Controller
 {
     public function index(): View
     {
-        $blogs = Blog::query()
-            ->latest('updated_at')
-            ->paginate(10);
+        $search = request()->string('search')->trim()->toString();
 
-        return view('blog.index', compact('blogs'));
+        $blogs = Blog::query()
+            ->when($search !== '', function ($query) use ($search) {
+                $query->where(function ($query) use ($search) {
+                    $query->where('title', 'like', "%{$search}%")
+                        ->orWhere('slug', 'like', "%{$search}%")
+                        ->orWhere('category', 'like', "%{$search}%")
+                        ->orWhere('excerpt', 'like', "%{$search}%");
+                });
+            })
+            ->latest('updated_at')
+            ->paginate(10)
+            ->withQueryString();
+
+        return view('blog.index', compact('blogs', 'search'));
     }
 
     public function create(): View
