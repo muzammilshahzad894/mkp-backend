@@ -41,12 +41,22 @@
             $dashboardLinkClass = $dashboardActive
                 ? 'flex items-center gap-3 rounded-xl bg-gradient-to-r from-violet-500/20 to-cyan-500/10 px-4 py-3 text-sm font-semibold text-white ring-1 ring-white/10 shadow-lg shadow-violet-500/10'
                 : 'flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium text-slate-400 transition hover:bg-white/5 hover:text-white';
+            $blogsActive = request()->routeIs('blogs.*');
+            $blogsLinkClass = $blogsActive
+                ? 'flex items-center gap-3 rounded-xl bg-gradient-to-r from-violet-500/20 to-cyan-500/10 px-4 py-3 text-sm font-semibold text-white ring-1 ring-white/10 shadow-lg shadow-violet-500/10'
+                : 'flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium text-slate-400 transition hover:bg-white/5 hover:text-white';
         @endphp
         <a href="{{ route('dashboard') }}" class="{{ $dashboardLinkClass }}" @click="sidebarOpen = false">
             <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-white/5 text-cyan-300 ring-1 ring-white/10">
                 <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"/></svg>
             </span>
-            Dashboard
+            {{ __('Dashboard') }}
+        </a>
+        <a href="{{ route('blogs.index') }}" class="{{ $blogsLinkClass }}" @click="sidebarOpen = false">
+            <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-white/5 text-cyan-300 ring-1 ring-white/10">
+                <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+            </span>
+            {{ __('Blog') }}
         </a>
     </nav>
 </aside>

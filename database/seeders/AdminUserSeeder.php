@@ -19,7 +19,7 @@ class AdminUserSeeder extends Seeder
             ['email' => 'admin@mkpdesign.com'],
             [
                 'name' => 'MKPDesign Admin',
-                'password' => 'MKPDesign@2026',
+                'password' => 'test1234',
                 'email_verified_at' => now(),
             ]
         );

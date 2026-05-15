@@ -24,7 +24,7 @@
     @endphp
 
     <div class="py-12">
-        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
 
             {{-- ── Hero Welcome Card ── --}}
             <div
